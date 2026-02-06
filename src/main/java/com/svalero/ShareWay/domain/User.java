@@ -14,34 +14,36 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column (nullable = false)
     @NotBlank(message = "name is mandatory")
+    @Column(nullable = false)
     private String name;
     @Email(message = "email format is not valid")
     @NotBlank(message = "email is mandatory")
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column
     @NotBlank(message = "phone is mandatory")
     @Pattern(regexp = "^\\d+$", message = "phone must be numbers")
     @Size(min = 9, message = "phone must have at least 9 numbers")
+    @Column(nullable = false)
     private String phone;
-    @NotNull(message = "reservationDate is mandatory")
-    @Column(name = "registration_date")
+    @NotNull(message = "registrationDate is mandatory")
+    @Column(name = "registration_date", nullable = false)
     private LocalDate registrationDate;
+    @Min(value = 0, message = "Min 0")
+    @Max(value = 5, message = "Max 5")
     @Column(name = "stars")
-    @Min(value = 0,message = "Min 0")
-    @Max(value= 5,message = "Max 5")
-    private int star;
-    @Column
-    private Boolean verified;
+    private Integer stars;
+    @Column(nullable = false)
+    private boolean verified = false;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
-    @OneToMany (mappedBy = "user")
-    private List <Reservation> reservation;
+    private List<Reservation> reservations;
 }
