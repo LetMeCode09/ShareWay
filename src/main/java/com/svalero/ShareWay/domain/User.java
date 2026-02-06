@@ -17,10 +17,9 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @NotBlank(message = "name is mandatory")
     @Column(nullable = false)
     private String name;
