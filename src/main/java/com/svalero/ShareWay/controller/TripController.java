@@ -32,6 +32,15 @@ public class TripController {
         return new ResponseEntity<>(tripService.add(trip), HttpStatus.OK);
     }
 
+    @PutMapping("/trips/{id}")
+    public ResponseEntity<Trip> modifyTrip(
+            @PathVariable long id,
+            @Valid @RequestBody Trip trip
+    ) throws TripNotFoundException {
+
+        return new ResponseEntity<>(tripService.modify(id, trip), HttpStatus.OK);
+    }
+
     @DeleteMapping("/trips/{id}")
     public ResponseEntity<Void> deleteTrip(@PathVariable long id) throws TripNotFoundException {
         tripService.delete(id);
