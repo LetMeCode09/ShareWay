@@ -1,6 +1,7 @@
 package com.svalero.ShareWay.service;
 
 import com.svalero.ShareWay.domain.User;
+import com.svalero.ShareWay.exception.UserNotFoundException;
 import com.svalero.ShareWay.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,12 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "User not found with id: " + id
-                ));
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(email));
     }
 
     public User createUser(User user) {
@@ -61,13 +65,6 @@ public class UserService {
     public void deleteUser(Long id) {
         User existing = getUserById(id);
         userRepository.delete(existing);
-    }
-
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "User not found with email: " + email
-                ));
     }
 
     public List<User> searchByName(String name) {
