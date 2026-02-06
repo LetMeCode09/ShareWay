@@ -1,5 +1,6 @@
 package com.svalero.ShareWay.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -33,14 +34,14 @@ public class Trip {
     private String transportTypes;
     @Min(value=1)
     @Column(name= "available_seats")
-    private int availableSeats;
+    private Integer availableSeats;
     @Min(value = 0, message = "price cannot be negative")
     @Column(name= "prices")
-    private int price;
+    private Integer price;
     @Column
     private Boolean full;
 
     @OneToMany (mappedBy = "trip")
-    @JsonIgnoreProperties("trip")
+    @JsonBackReference
     private List<Reservation> reservation;
 }

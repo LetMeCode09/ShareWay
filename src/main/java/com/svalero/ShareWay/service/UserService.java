@@ -57,7 +57,7 @@ public class UserService {
         existing.setPhone(updated.getPhone());
         existing.setRegistrationDate(updated.getRegistrationDate());
         existing.setStars(updated.getStars());
-        existing.setVerified(updated.isVerified());
+        existing.setVerified(updated.getVerified());
 
         return userRepository.save(existing);
     }

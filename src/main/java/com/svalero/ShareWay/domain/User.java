@@ -40,7 +40,7 @@ public class User {
     @Column(name = "stars")
     private Integer stars;
     @Column(nullable = false)
-    private boolean verified = false;
+    private Boolean verified = false;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")

@@ -1,10 +1,12 @@
 package com.svalero.ShareWay.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,18 +24,17 @@ public class Reservation {
     private Long id;
     @Min(value=1)
     @Column(name= "number_of_seats")
-    private int numberOfSeats;
+    private Integer numberOfSeats;
     @NotNull (message = "date is required")
     @Column(name= "reservation_date")
     private LocalDateTime reservationDate;
     @Column
     private Boolean confirmed;
-    @Max(value=80)
     @Column
     private String comment;
     @Min(value = 0, message = "price cannot be negative")
     @Column(name= "total_price")
-    private int totalPrice;
+    private Integer totalPrice;
 
     @ManyToOne
     @JsonIgnoreProperties("reservation")
@@ -43,5 +44,6 @@ public class Reservation {
     @ManyToOne
     @JsonIgnoreProperties("reservation")
     @JoinColumn (name="trip_id")
+    @JsonBackReference
     private Trip trip;
 }
