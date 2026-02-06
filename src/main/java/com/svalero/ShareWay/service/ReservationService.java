@@ -46,9 +46,6 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(id)
                         .orElse(null);
         reservationRepository.delete(reservation);
-
     }
-
-
 
 }
