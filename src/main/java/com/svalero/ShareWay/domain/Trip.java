@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -38,5 +39,5 @@ public class Trip {
     private Boolean full;
 
     @OneToMany (mappedBy = "trip")
-    private Reservation reservation;
+    private List<Reservation> reservation;
 }
