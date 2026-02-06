@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "reservations")
-
+@Entity
+@Table(name = "reservations")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
