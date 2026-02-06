@@ -29,18 +29,18 @@ public class ReservationController {
         return reservationService.findById(id);
     }
 
-    @PostMapping("/reservatiosn")
+    @PostMapping("/reservations")
     public Reservation create(@RequestBody @Valid Reservation reservation) {
         return reservationService.add(reservation);
     }
 
-    @PutMapping("reservations/{id}")
+    @PutMapping("/reservations/{id}")
     public Reservation update(@RequestBody @Valid Reservation reservation, @PathVariable Long id) {
         Reservation updateReservation = reservationService.modify(id, reservation);
         return updateReservation;
     }
 
-    @DeleteMapping("reservations/{id}")
+    @DeleteMapping("/reservations/{id}")
     public void delete(@PathVariable Long id) {
         reservationService.delete(id);
     }
