@@ -1,10 +1,16 @@
-HELP.md
+### Maven / Spring Boot ###
 target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!.mvn/wrapper/maven-wrapper.jar
+!*/src/main/*/target/
+!*/src/test/*/target/
 
-### STS ###
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
 .apt_generated
 .classpath
 .factorypath
@@ -13,12 +19,6 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -26,8 +26,18 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
+
+### Mac OS ###
+.DS_Store
+
+### WireMock & Logs ###
+
+# Ignorar todos los .jar (ejecutables)
+*.jar
+# Ignorar todos los logs
+*.log
+# No ignorar el wrapper de Maven (necesario)
+!maven-wrapper.jar
