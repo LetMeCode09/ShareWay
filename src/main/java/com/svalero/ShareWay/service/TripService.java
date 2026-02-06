@@ -27,6 +27,14 @@ public class TripService {
         return tripRepository.save(trip);
     }
 
+    public Trip modify(long id, Trip trip) throws TripNotFoundException {
+        Trip existingTrip = tripRepository.findById(id)
+                .orElseThrow(TripNotFoundException::new);
+
+        trip.setId(existingTrip.getId());
+        return tripRepository.save(trip);
+    }
+
     public void delete(long id) throws TripNotFoundException {
         Trip existingTrip = tripRepository.findById(id)
                 .orElseThrow(TripNotFoundException::new);
