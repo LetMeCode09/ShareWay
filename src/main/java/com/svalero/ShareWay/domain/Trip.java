@@ -1,5 +1,6 @@
 package com.svalero.ShareWay.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -38,5 +40,6 @@ public class Trip {
     private Boolean full;
 
     @OneToMany (mappedBy = "trip")
-    private Reservation reservation;
+    @JsonIgnoreProperties("trip")
+    private List<Reservation> reservation;
 }
