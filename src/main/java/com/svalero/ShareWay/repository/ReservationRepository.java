@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
 
-    List<Reservation> findAll();
 }
 
