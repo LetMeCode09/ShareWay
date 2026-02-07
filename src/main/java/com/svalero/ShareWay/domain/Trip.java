@@ -41,7 +41,8 @@ public class Trip {
     @Column
     private Boolean full;
 
+    @JsonIgnoreProperties({"reservations"})
     @OneToMany (mappedBy = "trip")
     @JsonBackReference
-    private List<Reservation> reservation;
+    private List<Reservation> reservations;
 }

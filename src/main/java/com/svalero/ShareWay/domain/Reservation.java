@@ -42,8 +42,7 @@ public class Reservation {
     private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties("reservation")
-    @JoinColumn (name="trip_id")
-    @JsonBackReference
+    @JoinColumn(name="trip_id")
+    @JsonIgnoreProperties({"reservations"})
     private Trip trip;
 }
