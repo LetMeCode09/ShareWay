@@ -11,28 +11,34 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
+@RequestMapping("/trips")
 public class TripController {
 
     @Autowired
     private TripService tripService;
 
-    @GetMapping("/trips")
+    // GET /trips
+    @GetMapping
     public ResponseEntity<List<Trip>> getAll() {
         return new ResponseEntity<>(tripService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/trips/{id}")
+    // GET /trips/{id}
+    @GetMapping("/{id}")
     public ResponseEntity<Trip> get(@PathVariable long id) throws TripNotFoundException {
         return new ResponseEntity<>(tripService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/trips")
+    // POST /trips
+    @PostMapping
     public ResponseEntity<Trip> addTrip(@Valid @RequestBody Trip trip) {
-        return new ResponseEntity<>(tripService.add(trip), HttpStatus.OK);
+        return new ResponseEntity<>(tripService.add(trip), HttpStatus.CREATED);
     }
 
-    @PutMapping("/trips/{id}")
+    // PUT /trips/{id}
+    @PutMapping("/{id}")
     public ResponseEntity<Trip> modifyTrip(
             @PathVariable long id,
             @Valid @RequestBody Trip trip
@@ -41,7 +47,8 @@ public class TripController {
         return new ResponseEntity<>(tripService.modify(id, trip), HttpStatus.OK);
     }
 
-    @DeleteMapping("/trips/{id}")
+    // DELETE /trips/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTrip(@PathVariable long id) throws TripNotFoundException {
         tripService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
