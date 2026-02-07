@@ -42,7 +42,8 @@ public class User {
     @Column(nullable = false)
     private Boolean verified = false;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("user")
-    private List<Reservation> reservations;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    @JsonIgnoreProperties({"reservations"})
+    private User user;
 }
