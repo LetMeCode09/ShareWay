@@ -3,6 +3,8 @@ package com.svalero.ShareWay.controller;
 import com.svalero.ShareWay.domain.User;
 import com.svalero.ShareWay.service.UserService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,8 @@ public class UserController {
 
     private final UserService userService;
 
+    private final Logger logger = LoggerFactory.getLogger(ReservationController.class);
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -22,12 +26,14 @@ public class UserController {
     // GET /users
     @GetMapping
     public List<User> getAll() {
+        logger.info("GET /users");
         return userService.getAllUsers();
     }
 
     // GET /users/{id}
     @GetMapping("/{id}")
     public User getById(@PathVariable Long id) {
+        logger.info("GET /users/id ");
         return userService.getUserById(id);
     }
 
