@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -27,7 +28,7 @@ public class Reservation {
     private Integer numberOfSeats;
     @NotNull (message = "date is required")
     @Column(name= "reservation_date")
-    private LocalDateTime reservationDate;
+    private LocalDate reservationDate;
     @Column
     private Boolean confirmed;
     @Column

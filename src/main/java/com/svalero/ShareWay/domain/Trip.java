@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Trip {
     private String destination;
     @NotNull(message = "Date and time are mandatory")
     @Column(name= "date_time")
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
     @Column(name= "transport_types")
     private String transportTypes;
     @Min(value=1)
